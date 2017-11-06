@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Panel;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -17,12 +18,12 @@ public class TTRGame extends Panel {
     private Image offScreenImage;
     private Dimension offScreenSize;
     private Graphics offScreenGraphics;
-    final boolean RESIZEABLE = false;
-    int width = 1280 - 10;
-    int height = 1024 - 10;
-    Image virtualMem;
-    Graphics2D gBuffer;
-    InputHandler keyboard;
+    private static final boolean RESIZEABLE = false;
+    private static int width = 1280 - 10;
+    private static int height = 1024 - 10;
+    private Image virtualMem;
+    private Graphics2D gBuffer;
+    private InputHandler keyboard;
 
     public static void main(String[] args) {
         Frame f = new Frame();
@@ -41,26 +42,32 @@ public class TTRGame extends Panel {
     }
 
     //required for user input
+    @Override
     public boolean mouseMove(Event e, int x, int y) {
         return InputHandler.mouseUpdate(x, y);
     }
 
+    @Override
     public boolean mouseDrag(Event e, int x, int y) {
         return InputHandler.mouseUpdate(x, y);
     }
 
+    @Override
     public boolean mouseDown(Event e, int x, int y) {
         return InputHandler.mouseChange(e, true);
     }
 
+    @Override
     public boolean mouseUp(Event e, int x, int y) {
         return InputHandler.mouseChange(e, false);
     }
 
+    @Override
     public boolean keyDown(Event e, int key) {
         return InputHandler.keyChange(e, key, true);
     }
 
+    @Override
     public boolean keyUp(Event e, int key) {
         return InputHandler.keyChange(e, key, false);
     }
@@ -91,13 +98,11 @@ public class TTRGame extends Panel {
         g.drawImage(offScreenImage, 0, 0, null);
     }
 
-    //declare static variables here
-    ArrayList<Letter> list = new ArrayList<Letter>();
+    List<Letter> list = new ArrayList<>();
     row1 field = new row1(0, 0);
     Heart hearts = new Heart();
 
-    public void init()  //runs once at the beginning of the program
-    {
+    public void init() {
         requestFocus();
         list.add(new Letter(70, 800, "A_key.png"));
         list.add(new Letter(70, 800, "B_key.png"));
@@ -125,18 +130,12 @@ public class TTRGame extends Panel {
         list.add(new Letter(70, 800, "X_key.png"));
         list.add(new Letter(70, 800, "Y_key.png"));
         list.add(new Letter(70, 800, "Z_key.png"));
-
     }
 
-    int paco = 0;
-
-    public void paint(Graphics g)//makes pretty pictures
-    {
-
+    public void paint(Graphics g) {
         field.draw(g, this);
         field.generateLetters();
         hearts.draw(g, this, field.lives);
-//System.out.println(field.listofLetters.size());
         try {
             Thread.sleep(4);
         } catch (Exception e) {
@@ -147,10 +146,7 @@ public class TTRGame extends Panel {
 
 }
 
-class InputHandler    //class to handle input
-{
-    public InputHandler() {
-    }
+class InputHandler {
 
     //ids for keys
     public static final int id_UP = 1004;
@@ -236,52 +232,51 @@ class InputHandler    //class to handle input
     public static int MOUSE_X = 0;
     public static int MOUSE_Y = 0;
 
-    public static boolean keyChange(Event e, int key, boolean newKeyState) {        //changes key state variables to correct values
+    public static boolean keyChange(Event e, int key, boolean newKeyState) {
         switch (key) {
-            case id_UP:// Up
+            case id_UP:
                 InputHandler.UP = newKeyState;
-                // System.out.println("Yup");
                 break;
-            case InputHandler.id_DOWN:// Down
+            case InputHandler.id_DOWN:
                 InputHandler.DOWN = newKeyState;
                 break;
-            case InputHandler.id_LEFT:// Left
+            case InputHandler.id_LEFT:
                 InputHandler.LEFT = newKeyState;
                 break;
-            case InputHandler.id_RIGHT:// Right
+            case InputHandler.id_RIGHT:
                 InputHandler.RIGHT = newKeyState;
                 break;
 
-            case InputHandler.id_SPACE:// space
+            case InputHandler.id_SPACE:
                 InputHandler.SPACE = newKeyState;
                 break;
-            case InputHandler.id_X:// space
+            case InputHandler.id_X:
                 InputHandler.X = newKeyState;
                 break;
 
-            case InputHandler.id_W:// Up
+            case InputHandler.id_W:
                 InputHandler.W = newKeyState;
                 break;
-            case InputHandler.id_S:// Down
+            case InputHandler.id_S:
                 InputHandler.S = newKeyState;
                 break;
-            case InputHandler.id_A:// Left
+            case InputHandler.id_A:
                 InputHandler.A = newKeyState;
                 break;
-            case InputHandler.id_D:// Right
+            case InputHandler.id_D:
                 InputHandler.D = newKeyState;
                 break;
 
-            case InputHandler.id_I:// Up
+            case InputHandler.id_I:
                 InputHandler.I = newKeyState;
                 break;
-            case InputHandler.id_J:// Down
+            case InputHandler.id_J:
                 InputHandler.J = newKeyState;
                 break;
-            case InputHandler.id_K:// Left
+            case InputHandler.id_K:
                 InputHandler.K = newKeyState;
                 break;
-            case InputHandler.id_L:// Right
+            case InputHandler.id_L:
                 InputHandler.L = newKeyState;
                 break;
 
@@ -292,70 +287,69 @@ class InputHandler    //class to handle input
                 InputHandler.ESC = newKeyState;
                 break;
 
-            case InputHandler.id_B:// B
+            case InputHandler.id_B:
                 InputHandler.B = newKeyState;
                 break;
 
-            case InputHandler.id_C:// C
+            case InputHandler.id_C:
                 InputHandler.C = newKeyState;
                 break;
 
-            case InputHandler.id_E:// E
+            case InputHandler.id_E:
                 InputHandler.E = newKeyState;
                 break;
 
-            case InputHandler.id_F:// F
+            case InputHandler.id_F:
                 InputHandler.F = newKeyState;
                 break;
 
-            case InputHandler.id_G:// G
+            case InputHandler.id_G:
                 InputHandler.G = newKeyState;
                 break;
 
-            case InputHandler.id_H:// H
+            case InputHandler.id_H:
                 InputHandler.H = newKeyState;
                 break;
 
-            case InputHandler.id_M:// M
+            case InputHandler.id_M:
                 InputHandler.M = newKeyState;
                 break;
 
-            case InputHandler.id_N:// N
+            case InputHandler.id_N:
                 InputHandler.N = newKeyState;
                 break;
 
-            case InputHandler.id_O:// O
+            case InputHandler.id_O:
                 InputHandler.O = newKeyState;
                 break;
 
-            case InputHandler.id_Q:// Q
+            case InputHandler.id_Q:
                 InputHandler.Q = newKeyState;
                 break;
 
-            case InputHandler.id_R:// R
+            case InputHandler.id_R:
                 InputHandler.R = newKeyState;
                 break;
 
-            case InputHandler.id_T:// T
+            case InputHandler.id_T:
                 InputHandler.T = newKeyState;
                 break;
 
-            case InputHandler.id_U:// U
+            case InputHandler.id_U:
                 InputHandler.U = newKeyState;
                 break;
 
-            case InputHandler.id_V:// V
+            case InputHandler.id_V:
                 InputHandler.V = newKeyState;
                 break;
 
-            case InputHandler.id_Y:// Y
+            case InputHandler.id_Y:
                 InputHandler.Y = newKeyState;
                 break;
 
-            case InputHandler.id_Z:// Z
+            case InputHandler.id_Z:
                 InputHandler.Z = newKeyState;
                 break;
-
 
             default:
                 System.out.print(key);    //print any unbound key presses- may spam console
@@ -368,34 +362,31 @@ class InputHandler    //class to handle input
         return true;
     }
 
-    public static boolean mouseUpdate(int x, int y)    //handles mouse movement
-    {
+    public static boolean mouseUpdate(int x, int y) {
         InputHandler.MOUSE_X = x;
         InputHandler.MOUSE_Y = y;
-        //System.out.println("\n\n\n\n"+x+"   "+y);
         return true;
     }
 
-    public static boolean mouseChange(Event e, boolean newKeyState)    //handles mouse clicks
-    {
-        if (e.metaDown())
+    public static boolean mouseChange(Event e, boolean newKeyState) {
+        if (e.metaDown()) {
             InputHandler.MOUSE_RIGHT = newKeyState;
-        else
+        } else {
             InputHandler.MOUSE_LEFT = newKeyState;
+        }
         return true;
     }
 }
 
-//write additional methods here
 class Letter {
-    Image pic;
+    private Image pic;
     int x;
-    int y;
-    int xd = -3;
-    int speedTimer = 0;
-    String value = "";
+    private int y;
+    private int xd = -3;
+    private int speedTimer = 0;
+    private String value = "";
     int charValue;
-    Font leFont = new Font("TimesRoman", Font.BOLD, 90);
+    private Font leFont = new Font("TimesRoman", Font.BOLD, 90);
 
 
     public Letter(int ex, int why, String let) {
@@ -410,17 +401,13 @@ class Letter {
     }
 
     public void draw(Graphics g, TTRGame e) {
-//System.out.println("Letter draw");
-        //	g.drawImage(pic,x,y,60,60,e);
         g.setFont(leFont);
         g.drawString("" + (char) charValue, x, y + 60);
         move();
 
-//System.out.println("Letter stop");
     }
 
     public void move() {
-//System.out.println("Letter move");
         x += xd;
 
         if (speedTimer <= 3050)
@@ -803,10 +790,8 @@ class row1 {
             char rnd = (char) (Math.random() * 1 + 65);
 
             String f = "" + rnd + "_key.png";
-            //System.out.println(f);
 
             int rnd2 = (int) (Math.random() * 9);
-            //System.out.println(rnd2);
 
             if (rnd2 == 1)
                 listofLetters.add(new Letter(x + 1285, y + 59, f));
