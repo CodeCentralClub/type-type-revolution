@@ -73,32 +73,32 @@ public class main_game extends Panel  //change standAlone to your file name
 	public void init()  //runs once at the beginning of the program
 	{
 		requestFocus();
-list.add(new letters(70,800,"A_key.png"));
-list.add(new letters(70,800,"B_key.png"));
-list.add(new letters(70,800,"C_key.png"));
-list.add(new letters(70,800,"D_key.png"));
-list.add(new letters(70,800,"E_key.png"));
-list.add(new letters(70,800,"F_key.png"));
-list.add(new letters(70,800,"G_key.png"));
-list.add(new letters(70,800,"H_key.png"));
-list.add(new letters(70,800,"I_key.png"));
-list.add(new letters(70,800,"J_key.png"));
-list.add(new letters(70,800,"K_key.png"));
-list.add(new letters(70,800,"L_key.png"));
-list.add(new letters(70,800,"M_key.png"));
-list.add(new letters(70,800,"N_key.png"));
-list.add(new letters(70,800,"O_key.png"));
-list.add(new letters(70,800,"P_key.png"));
-list.add(new letters(70,800,"Q_key.png"));
-list.add(new letters(70,800,"R_key.png"));
-list.add(new letters(70,800,"S_key.png"));
-list.add(new letters(70,800,"T_key.png"));
-list.add(new letters(70,800,"U_key.png"));
-list.add(new letters(70,800,"V_key.png"));
-list.add(new letters(70,800,"W_key.png"));
-list.add(new letters(70,800,"X_key.png"));
-list.add(new letters(70,800,"Y_key.png"));
-list.add(new letters(70,800,"Z_key.png"));
+list.add(new letters(70,800,"assests/A_key.png"));
+list.add(new letters(70,800,"assests/B_key.png"));
+list.add(new letters(70,800,"assests/C_key.png"));
+list.add(new letters(70,800,"assests/D_key.png"));
+list.add(new letters(70,800,"assests/E_key.png"));
+list.add(new letters(70,800,"assests/F_key.png"));
+list.add(new letters(70,800,"assests/G_key.png"));
+list.add(new letters(70,800,"assests/H_key.png"));
+list.add(new letters(70,800,"assests/I_key.png"));
+list.add(new letters(70,800,"assests/J_key.png"));
+list.add(new letters(70,800,"assests/K_key.png"));
+list.add(new letters(70,800,"assests/L_key.png"));
+list.add(new letters(70,800,"assests/M_key.png"));
+list.add(new letters(70,800,"assests/N_key.png"));
+list.add(new letters(70,800,"assests/O_key.png"));
+list.add(new letters(70,800,"assests/P_key.png"));
+list.add(new letters(70,800,"assests/Q_key.png"));
+list.add(new letters(70,800,"assests/R_key.png"));
+list.add(new letters(70,800,"assests/S_key.png"));
+list.add(new letters(70,800,"assests/T_key.png"));
+list.add(new letters(70,800,"assests/U_key.png"));
+list.add(new letters(70,800,"assests/V_key.png"));
+list.add(new letters(70,800,"assests/W_key.png"));
+list.add(new letters(70,800,"assests/X_key.png"));
+list.add(new letters(70,800,"assests/Y_key.png"));
+list.add(new letters(70,800,"assests/Z_key.png"));
 
 	}
 int paco=0;
@@ -703,36 +703,35 @@ public void letterGen()
 
 if(exitTimer<0)
 	{
-	char rnd=(char)(Math.random()*1+65);
-
-	String f = ""+rnd+"_key.png";
+	char letterChar=(char)(Math.random()*26+65);
+	String f = ""+letterChar+"_key.png";
     //System.out.println(f);
 
-	int rnd2 = (int)(Math.random()*9);
+	int rowLetterChar = (int)(Math.random()*9);
 	//System.out.println(rnd2);
 
-	if(rnd2==1)
+	if(rowLetterChar==1)
 		listofLetters.add(new letters(x+1285,y+59,f));
 		exitTimer=30;
-	if(rnd2==2)
+	if(rowLetterChar==2)
 		listofLetters.add(new letters(x+1285,y+178,f));
 		exitTimer=30;
-	if(rnd2==3)
+	if(rowLetterChar==3)
 		listofLetters.add(new letters(x+1285,y+297,f));
 		exitTimer=30;
-	if(rnd2==4)
+	if(rowLetterChar==4)
 		listofLetters.add(new letters(x+1285,y+416,f));
 		exitTimer=30;
-	if(rnd2==5)
+	if(rowLetterChar==5)
 		listofLetters.add(new letters(x+1285,y+535,f));
 		exitTimer=30;
-	if(rnd2==6)
+	if(rowLetterChar==6)
 		listofLetters.add(new letters(x+1285,y+654,f));
 		exitTimer=30;
-	if(rnd2==7)
+	if(rowLetterChar==7)
 		listofLetters.add(new letters(x+1285,y+773,f));
 		exitTimer=50;
-	if(rnd2==8)
+	if(rowLetterChar==8)
 		listofLetters.add(new letters(x+1285,y+892,f));
 		exitTimer=50;
 		}
@@ -747,7 +746,7 @@ class heart
 
 	public heart()
 	{
-		try{pic=ImageIO.read(getClass().getResource("heartsl.png"));}catch(Exception e){System.out.println("oops");}
+		try{pic=ImageIO.read(getClass().getResource("assests/heartsl.png"));}catch(Exception e){System.out.println("oops");}
 	}
 	public void draw(Graphics g, main_game e,int lives)
 	{
