@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public class main_game extends Panel  //change standAlone to your file name
-{
+public class TTRGame extends Panel {
+
     private Image offScreenImage;
     private Dimension offScreenSize;
     private Graphics offScreenGraphics;
@@ -30,16 +30,14 @@ public class main_game extends Panel  //change standAlone to your file name
             public void windowClosing(java.awt.event.WindowEvent e) {
                 System.exit(0);
             }
-
-            ;
         });
-        main_game window = new main_game();  //change standAlone to your file name
+        TTRGame window = new TTRGame();  //change standAlone to your file name
         window.setSize(1050, 650);
         f.add(window);
         f.pack();
         window.init();
         f.setSize(1050, 650);/*size of frame*/
-        f.show();
+        f.setVisible(true);
     }
 
     //required for user input
@@ -67,8 +65,7 @@ public class main_game extends Panel  //change standAlone to your file name
         return InputHandler.keyChange(e, key, false);
     }
 
-    public void resizeWindow()  //Does not let the use resize the window
-    {
+    public void resizeWindow() {
         if (RESIZEABLE) {
             if (getHeight() != height + 10 || getWidth() != width + 10)    //check if window has been resized
             {
@@ -83,7 +80,7 @@ public class main_game extends Panel  //change standAlone to your file name
     }
 
     public void update(Graphics g) {
-        Dimension d = size();
+        Dimension d = getSize();
         if ((offScreenImage == null) || (d.width != offScreenSize.width) || (d.height != offScreenSize.height)) {
             offScreenImage = createImage(d.width, d.height);
             offScreenSize = d;
@@ -95,39 +92,39 @@ public class main_game extends Panel  //change standAlone to your file name
     }
 
     //declare static variables here
-    ArrayList<letters> list = new ArrayList<letters>();
+    ArrayList<Letter> list = new ArrayList<Letter>();
     row1 field = new row1(0, 0);
-    heart hearts = new heart();
+    Heart hearts = new Heart();
 
     public void init()  //runs once at the beginning of the program
     {
         requestFocus();
-        list.add(new letters(70, 800, "A_key.png"));
-        list.add(new letters(70, 800, "B_key.png"));
-        list.add(new letters(70, 800, "C_key.png"));
-        list.add(new letters(70, 800, "D_key.png"));
-        list.add(new letters(70, 800, "E_key.png"));
-        list.add(new letters(70, 800, "F_key.png"));
-        list.add(new letters(70, 800, "G_key.png"));
-        list.add(new letters(70, 800, "H_key.png"));
-        list.add(new letters(70, 800, "I_key.png"));
-        list.add(new letters(70, 800, "J_key.png"));
-        list.add(new letters(70, 800, "K_key.png"));
-        list.add(new letters(70, 800, "L_key.png"));
-        list.add(new letters(70, 800, "M_key.png"));
-        list.add(new letters(70, 800, "N_key.png"));
-        list.add(new letters(70, 800, "O_key.png"));
-        list.add(new letters(70, 800, "P_key.png"));
-        list.add(new letters(70, 800, "Q_key.png"));
-        list.add(new letters(70, 800, "R_key.png"));
-        list.add(new letters(70, 800, "S_key.png"));
-        list.add(new letters(70, 800, "T_key.png"));
-        list.add(new letters(70, 800, "U_key.png"));
-        list.add(new letters(70, 800, "V_key.png"));
-        list.add(new letters(70, 800, "W_key.png"));
-        list.add(new letters(70, 800, "X_key.png"));
-        list.add(new letters(70, 800, "Y_key.png"));
-        list.add(new letters(70, 800, "Z_key.png"));
+        list.add(new Letter(70, 800, "A_key.png"));
+        list.add(new Letter(70, 800, "B_key.png"));
+        list.add(new Letter(70, 800, "C_key.png"));
+        list.add(new Letter(70, 800, "D_key.png"));
+        list.add(new Letter(70, 800, "E_key.png"));
+        list.add(new Letter(70, 800, "F_key.png"));
+        list.add(new Letter(70, 800, "G_key.png"));
+        list.add(new Letter(70, 800, "H_key.png"));
+        list.add(new Letter(70, 800, "I_key.png"));
+        list.add(new Letter(70, 800, "J_key.png"));
+        list.add(new Letter(70, 800, "K_key.png"));
+        list.add(new Letter(70, 800, "L_key.png"));
+        list.add(new Letter(70, 800, "M_key.png"));
+        list.add(new Letter(70, 800, "N_key.png"));
+        list.add(new Letter(70, 800, "O_key.png"));
+        list.add(new Letter(70, 800, "P_key.png"));
+        list.add(new Letter(70, 800, "Q_key.png"));
+        list.add(new Letter(70, 800, "R_key.png"));
+        list.add(new Letter(70, 800, "S_key.png"));
+        list.add(new Letter(70, 800, "T_key.png"));
+        list.add(new Letter(70, 800, "U_key.png"));
+        list.add(new Letter(70, 800, "V_key.png"));
+        list.add(new Letter(70, 800, "W_key.png"));
+        list.add(new Letter(70, 800, "X_key.png"));
+        list.add(new Letter(70, 800, "Y_key.png"));
+        list.add(new Letter(70, 800, "Z_key.png"));
 
     }
 
@@ -137,7 +134,7 @@ public class main_game extends Panel  //change standAlone to your file name
     {
 
         field.draw(g, this);
-        field.letterGen();
+        field.generateLetters();
         hearts.draw(g, this, field.lives);
 //System.out.println(field.listofLetters.size());
         try {
@@ -390,7 +387,7 @@ class InputHandler    //class to handle input
 }
 
 //write additional methods here
-class letters {
+class Letter {
     Image pic;
     int x;
     int y;
@@ -401,7 +398,7 @@ class letters {
     Font leFont = new Font("TimesRoman", Font.BOLD, 90);
 
 
-    public letters(int ex, int why, String let) {
+    public Letter(int ex, int why, String let) {
         x = ex;
         y = why;
         value = let;
@@ -412,18 +409,18 @@ class letters {
         }
     }
 
-    public void draw(Graphics g, main_game e) {
-//System.out.println("letters draw");
+    public void draw(Graphics g, TTRGame e) {
+//System.out.println("Letter draw");
         //	g.drawImage(pic,x,y,60,60,e);
         g.setFont(leFont);
         g.drawString("" + (char) charValue, x, y + 60);
         move();
 
-//System.out.println("letters stop");
+//System.out.println("Letter stop");
     }
 
     public void move() {
-//System.out.println("letters move");
+//System.out.println("Letter move");
         x += xd;
 
         if (speedTimer <= 3050)
@@ -437,13 +434,13 @@ class letters {
             xd = -6;
 
         //System.out.println(speedTimer);
-//System.out.println("letters stop");
+//System.out.println("Letter stop");
     }
 
 }
 
 class row1 {
-    ArrayList<letters> listofLetters = new ArrayList<letters>();
+    ArrayList<Letter> listofLetters = new ArrayList<Letter>();
     int x;
     int y;
     int exitTimer = 0;
@@ -461,9 +458,7 @@ class row1 {
     }
 
 
-    public void draw(Graphics g, main_game e) {
-//System.out.print("row1 draw");
-
+    public void draw(Graphics g, TTRGame e) {
         exitTimer--;
 
         g.setColor(new Color(0, 0, 0));
@@ -711,14 +706,13 @@ class row1 {
                 }
             }
             if (listofLetters.get(a).x < 300 && key(listofLetters.get(a).charValue)) {
-                if (InputHandler.Z) {
+                if (InputHandler.Z)
                     score++;
-                    listofLetters.remove(a--);
-                    continue;
-                }
+                listofLetters.remove(a--);
+                continue;
             }
+        }
 
-        }//System.out.println("row1 stop");
     }
 
     public boolean key(int i) {
@@ -804,9 +798,7 @@ class row1 {
         return false;
     }
 
-    public void letterGen() {
-//System.out.println("row1 letterGen");
-
+    public void generateLetters() {
         if (exitTimer < 0) {
             char rnd = (char) (Math.random() * 1 + 65);
 
@@ -817,40 +809,39 @@ class row1 {
             //System.out.println(rnd2);
 
             if (rnd2 == 1)
-                listofLetters.add(new letters(x + 1285, y + 59, f));
+                listofLetters.add(new Letter(x + 1285, y + 59, f));
             exitTimer = 30;
             if (rnd2 == 2)
-                listofLetters.add(new letters(x + 1285, y + 178, f));
+                listofLetters.add(new Letter(x + 1285, y + 178, f));
             exitTimer = 30;
             if (rnd2 == 3)
-                listofLetters.add(new letters(x + 1285, y + 297, f));
+                listofLetters.add(new Letter(x + 1285, y + 297, f));
             exitTimer = 30;
             if (rnd2 == 4)
-                listofLetters.add(new letters(x + 1285, y + 416, f));
+                listofLetters.add(new Letter(x + 1285, y + 416, f));
             exitTimer = 30;
             if (rnd2 == 5)
-                listofLetters.add(new letters(x + 1285, y + 535, f));
+                listofLetters.add(new Letter(x + 1285, y + 535, f));
             exitTimer = 30;
             if (rnd2 == 6)
-                listofLetters.add(new letters(x + 1285, y + 654, f));
+                listofLetters.add(new Letter(x + 1285, y + 654, f));
             exitTimer = 30;
             if (rnd2 == 7)
-                listofLetters.add(new letters(x + 1285, y + 773, f));
+                listofLetters.add(new Letter(x + 1285, y + 773, f));
             exitTimer = 50;
             if (rnd2 == 8)
-                listofLetters.add(new letters(x + 1285, y + 892, f));
+                listofLetters.add(new Letter(x + 1285, y + 892, f));
             exitTimer = 50;
         }
-//System.out.println("row1 stop");
     }
 }
 
-class heart {
+class Heart {
     Image pic;
     int x;
     int y;
 
-    public heart() {
+    public Heart() {
         try {
             pic = ImageIO.read(getClass().getResource("heartsl.png"));
         } catch (Exception e) {
@@ -858,21 +849,15 @@ class heart {
         }
     }
 
-    public void draw(Graphics g, main_game e, int lives) {
-//System.out.println("heart draw");
-        //System.out.println(lives);
-        for (int a = 0; a < lives; a++)
+    public void draw(Graphics g, TTRGame e, int lives) {
+        for (int a = 0; a < lives; a++) {
             g.drawImage(pic, x + 55, 10, 50, 50, e);
-        if (lives >= 2)
+        }
+        if (lives >= 2) {
             g.drawImage(pic, x + 155, 10, 50, 50, e);
-        if (lives == 3)
+        }
+        if (lives == 3) {
             g.drawImage(pic, x + 255, 10, 50, 50, e);
-
-
-//System.out.println("heart stop");
-
+        }
     }
 }
-
-
-//write additional classes here
