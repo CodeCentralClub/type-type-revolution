@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.RenderingHints;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +21,16 @@ public class TTRGame extends Panel {
     private Dimension offScreenSize;
     private Graphics offScreenGraphics;
     private static final boolean RESIZEABLE = false;
-    private static int width = 1280 - 10;
-    private static int height = 1024 - 10;
+    private int width = 1280 - 10;
+    private int height = 1024 - 10;
     private Image virtualMem;
     private Graphics2D gBuffer;
     private InputHandler keyboard;
 
     public static void main(String[] args) {
         Frame f = new Frame();
-        f.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
@@ -39,27 +41,6 @@ public class TTRGame extends Panel {
         window.init();
         f.setSize(1050, 650);/*size of frame*/
         f.setVisible(true);
-    }
-
-    //required for user input
-    @Override
-    public boolean mouseMove(Event e, int x, int y) {
-        return InputHandler.mouseUpdate(x, y);
-    }
-
-    @Override
-    public boolean mouseDrag(Event e, int x, int y) {
-        return InputHandler.mouseUpdate(x, y);
-    }
-
-    @Override
-    public boolean mouseDown(Event e, int x, int y) {
-        return InputHandler.mouseChange(e, true);
-    }
-
-    @Override
-    public boolean mouseUp(Event e, int x, int y) {
-        return InputHandler.mouseChange(e, false);
     }
 
     @Override
