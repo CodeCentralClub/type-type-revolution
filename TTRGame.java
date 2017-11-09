@@ -1,17 +1,9 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Event;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Panel;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 public class TTRGame extends Panel {
 
@@ -47,6 +39,7 @@ public class TTRGame extends Panel {
         return InputHandler.onKeyChange(e, key, false);
     }
 
+    @Override
     public void update(Graphics g) {
         Dimension d = getSize();
         if ((offScreenImage == null) || (d.width != offScreenSize.width) || (d.height != offScreenSize.height)) {
