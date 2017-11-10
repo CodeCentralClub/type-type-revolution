@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 /**
  *
  */
-public class InputHandler implements KeyListener{
+public class InputHandler implements KeyListener {
 
     public InputHandler() {
 

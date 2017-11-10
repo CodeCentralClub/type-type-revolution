@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Row extends GameObject {
 
-    private static final int HEIGHT  = 128;
+    private static final int HEIGHT = 128;
 
     private static final int DEFAULT_WIDTH = 1000;
 

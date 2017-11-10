@@ -58,6 +58,11 @@ public class TTRGame extends JApplet {
     }
 
     private void initializeRows() {
+        int yPos = 100;
+        for (int i = 0; i < rows.size(); i++) {
+            rows.set(i, new Row(0, yPos));
+            yPos += 50;
+        }
     }
 
     /**
