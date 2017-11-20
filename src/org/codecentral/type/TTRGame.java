@@ -7,9 +7,13 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 
@@ -52,14 +56,21 @@ public class TTRGame extends JApplet {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
+        drawBackground(graphics);
         drawRows(graphics);
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         repaint();
+    }
+
+    private void drawBackground(Graphics g) {
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("assets/metalbackground.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Couldn't draw background");
+        }
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
     }
 
     private void initializeRows() {
