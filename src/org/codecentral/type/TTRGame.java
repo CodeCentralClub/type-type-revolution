@@ -22,7 +22,9 @@ public class TTRGame extends JApplet {
 
     private static final String NAME = "Type Type Revolution";
 
-    private List<Row> rows = new ArrayList<>(4);
+    private static final int ROW_AMOUNT = 4;
+
+    private List<Row> rows = new ArrayList<>();
 
     public static void main(String[] args) {
         JFrame f = new JFrame(NAME);
@@ -62,9 +64,9 @@ public class TTRGame extends JApplet {
 
     private void initializeRows() {
         int yPos = 100;
-        for (int i = 0; i < rows.size(); i++) {
-            rows.set(i, new Row(0, yPos));
-            yPos += 50;
+        for (int i = 0; i < ROW_AMOUNT; i++) {
+            rows.add(i, new Row(0, yPos));
+            yPos += Row.HEIGHT + 100;
         }
     }
 

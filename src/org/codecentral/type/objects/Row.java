@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Row extends GameObject {
 
-    private static final int HEIGHT = 128;
+    public static final int HEIGHT = 128;
 
     private static final int DEFAULT_WIDTH = 1000;
 
@@ -30,7 +30,7 @@ public class Row extends GameObject {
         }
         // Draw this row
         g.setColor(Color.BLACK);
-        g.drawRect(getX(), getY(), DEFAULT_WIDTH, HEIGHT);
+        g.fillRect(getX(), getY(), DEFAULT_WIDTH, HEIGHT);
         // Draw the letters
         drawLetters(g);
     }
