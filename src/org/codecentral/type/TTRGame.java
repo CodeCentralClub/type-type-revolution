@@ -4,6 +4,7 @@ import org.codecentral.type.objects.Row;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -18,9 +19,6 @@ import javax.swing.JFrame;
  * @author David Robles, Willie Chalmers III, Nason Lewis
  */
 public class TTRGame extends JApplet {
-
-    private static final int DEFAULT_WIDTH = 1280;
-    private static final int DEFAULT_HEIGHT = 1024;
 
     private static final String NAME = "Type Type Revolution";
 
@@ -38,7 +36,9 @@ public class TTRGame extends JApplet {
         f.add(game);
         game.init();
         f.pack();
-        f.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+        f.setExtendedState(f.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        f.setSize(screenSize.width - 100, screenSize.height - 100);
         f.setVisible(true);
     }
 
