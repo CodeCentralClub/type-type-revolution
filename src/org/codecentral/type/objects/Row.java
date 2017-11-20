@@ -30,7 +30,7 @@ public class Row extends GameObject {
         }
         // Draw this row
         g.setColor(Color.BLACK);
-        g.drawRect(getX(), getY(), HEIGHT, DEFAULT_WIDTH);
+        g.drawRect(getX(), getY(), DEFAULT_WIDTH, HEIGHT);
         // Draw the letters
         drawLetters(g);
     }
