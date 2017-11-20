@@ -7,30 +7,45 @@ import java.util.List;
 
 public class Row extends GameObject {
 
-    public static final int HEIGHT = 128;
-
-    private static final int DEFAULT_WIDTH = 1000;
+    private static final int DEFAULT_HEIGHT = 128;
 
     private List<Letter> letters = new ArrayList<>();
 
-    public Row(int x, int y) {
-        super(x, y);
+    /**
+     * Creates a new row with {@link #DEFAULT_HEIGHT}
+     *
+     * @see #Row(int, int, int, int)
+     */
+    public Row(int x, int y, int width) {
+        this(x, y, width, DEFAULT_HEIGHT);
     }
 
-    public void drawLetters(Graphics graphics) {
-        letters.forEach(letter -> letter.onDraw(graphics));
+    public Row(int x, int y, int width, int height) {
+        super(x, y, width, height);
+    }
+
+
+    private void drawLetters(Graphics graphics) {
+        for (Letter letter : letters) {
+            letter.onDraw(graphics);
+        }
+    }
+
+    @Override
+    public void onUpdate() {
+        if (letters.size() == 0) {
+            for (int i = 0; i < 10; i++) {
+                letters.add(new Letter(200, 200, 100, 100));
+            }
+        }
+        letters.forEach(Letter::onUpdate);
     }
 
     @Override
     public void onDraw(Graphics g) {
-        if (letters.size() == 0) {
-            for (int i = 0; i < 10; i++) {
-                letters.add(new Letter(200, 200));
-            }
-        }
         // Draw this row
         g.setColor(Color.BLACK);
-        g.fillRect(getX(), getY(), DEFAULT_WIDTH, HEIGHT);
+        g.fillRect(getX(), getY(), getWidth(), getHeight());
         // Draw the letters
         drawLetters(g);
     }

@@ -16,12 +16,12 @@ public class Letter extends GameObject {
 
     private char letter;
 
-    public Letter(int x, int y) {
-        this(generateRandomLetter(), x, y);
+    public Letter(int x, int y, int width, int height) {
+        this(generateRandomLetter(), x, y, width, height);
     }
 
-    public Letter(char letter, int x, int y) {
-        super(x, y);
+    public Letter(char letter, int x, int y, int width, int height) {
+        super(x, y, width, height);
         this.letter = letter;
     }
 
