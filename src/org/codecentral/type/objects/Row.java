@@ -5,6 +5,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A {@link GameObject} that displays {@link Letter}s coming from right to left.
+ */
 public class Row extends GameObject {
 
     private static final int DEFAULT_HEIGHT = 128;
@@ -20,10 +23,12 @@ public class Row extends GameObject {
         this(x, y, width, DEFAULT_HEIGHT);
     }
 
+    /**
+     * Creates a new Row at the given position and with the given dimensions.
+     */
     public Row(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
-
 
     private void drawLetters(Graphics graphics) {
         for (Letter letter : letters) {
