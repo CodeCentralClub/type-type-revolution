@@ -11,12 +11,17 @@ abstract class GameObject {
 
     private Point position;
 
-    public GameObject(int x, int y) {
-        this(new Point(x, y));
+    private int width;
+    private int height;
+
+    public GameObject(int x, int y, int width, int height) {
+        this(new Point(x, y), width, height);
     }
 
-    public GameObject(Point position) {
+    public GameObject(Point position, int width, int height) {
         this.position = position;
+        this.width = width;
+        this.height = height;
     }
 
     public int getX() {
@@ -33,6 +38,22 @@ abstract class GameObject {
 
     public void setY(double y) {
         position.setLocation(getX(), y);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public abstract void onDraw(Graphics g);
