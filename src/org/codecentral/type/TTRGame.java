@@ -19,10 +19,12 @@ import javax.swing.JFrame;
  */
 public class TTRGame extends JApplet {
 
+    private static final int DEFAULT_WIDTH = 1280;
+    private static final int DEFAULT_HEIGHT = 1024;
+
     private static final String NAME = "Type Type Revolution";
 
     private List<Row> rows = new ArrayList<>(4);
-
 
     public static void main(String[] args) {
         JFrame f = new JFrame(NAME);
@@ -32,16 +34,16 @@ public class TTRGame extends JApplet {
                 System.exit(0);
             }
         });
-        TTRGame game = new TTRGame();
+        JApplet game = new TTRGame();
         f.add(game);
         game.init();
         f.pack();
-        f.setSize(new Dimension(1280, 1024));
+        f.setSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
         f.setVisible(true);
     }
 
+    @Override
     public void init() {
-
         initializeRows();
     }
 
@@ -49,6 +51,7 @@ public class TTRGame extends JApplet {
     public void paint(Graphics graphics) {
         super.paint(graphics);
         drawRows(graphics);
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
