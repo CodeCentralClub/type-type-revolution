@@ -62,6 +62,12 @@ public class TTRGame extends JApplet {
         repaint();
     }
 
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        updateRows();
+    }
+
     private void drawBackground(Graphics g) {
         BufferedImage img = null;
         try {
@@ -76,9 +82,14 @@ public class TTRGame extends JApplet {
     private void initializeRows() {
         int yPos = 100;
         for (int i = 0; i < ROW_AMOUNT; i++) {
-            rows.add(i, new Row(0, yPos));
-            yPos += Row.HEIGHT + 100;
+            Row row = new Row(0, yPos, getWidth());
+            rows.add(i, row);
+            yPos += row.getHeight() + 100;
         }
+    }
+
+    private void updateRows() {
+        rows.forEach(Row::onUpdate);
     }
 
     /**
