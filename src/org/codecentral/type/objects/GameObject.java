@@ -56,6 +56,16 @@ abstract class GameObject {
         this.height = height;
     }
 
+    /**
+     * Updates game logic and prepare for a redraw.
+     */
+    public void onUpdate() {
+
+    }
+
+    /**
+     * Redraws currently displayed graphics.
+     */
     public abstract void onDraw(Graphics g);
 
     @Override
