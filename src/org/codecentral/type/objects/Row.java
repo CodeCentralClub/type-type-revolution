@@ -58,7 +58,7 @@ public class Row extends GameObject {
     @Override
     public void onDraw(Graphics g) {
         // Draw this row
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         g.fillRect(getX(), getY(), getWidth(), getHeight());
         // Draw the letters
         drawLetters(g);

@@ -64,6 +64,7 @@ public class TTRGame extends JApplet {
         super.paint(graphics);
         drawBackground(graphics);
         drawRows(graphics);
+        updateRows();
 
         try {
             Thread.sleep(1000);
@@ -76,7 +77,7 @@ public class TTRGame extends JApplet {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
-        updateRows();
+        handleResizing();
     }
 
     private void drawBackground(Graphics g) {
@@ -102,6 +103,12 @@ public class TTRGame extends JApplet {
 
     private void updateRows() {
         rows.forEach(Row::onUpdate);
+    }
+
+    private void handleResizing() {
+        for (int i = 0; i < rows.size(); i++) {
+            rows.get(i).setWidth(getWidth());
+        }
     }
 
     /**
