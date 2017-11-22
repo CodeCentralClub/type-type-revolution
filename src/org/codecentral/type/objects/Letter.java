@@ -44,6 +44,7 @@ public class Letter extends GameObject {
         g.setFont(new Font("SansSerif", Font.BOLD, 10));
         g.setColor(Color.WHITE);
         g.drawString(String.valueOf(letter), getX(), getY());
+        moveForward();
     }
 
     /**
@@ -52,14 +53,19 @@ public class Letter extends GameObject {
      * @see #setSpeed(int)
      */
     public void moveForward() {
-        setY(getY() - speed);
+        setX(getX() - speed);
     }
+
 
     /**
      * Sets the rate in pixels per update in which this letter moves to the left.
      */
     public void setSpeed(int newSpeed) {
         speed = newSpeed;
+    }
+    @Override
+    public void onUpdate() {
+        moveForward();
     }
 
     private static char generateRandomLetter() {
