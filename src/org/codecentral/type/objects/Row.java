@@ -38,12 +38,23 @@ public class Row extends GameObject {
 
     @Override
     public void onUpdate() {
+
+
         if (letters.size() == 0) {
             for (int i = 0; i < 10; i++) {
                 letters.add(new Letter(200, 200, 100, 100));
             }
         }
+        for (Letter letter : letters) {
+            if (checkX(letter))
+                letters.remove(letters.indexOf(letter));
+        }
+
         letters.forEach(Letter::onUpdate);
+    }
+
+    public boolean checkX(Letter letter) {
+        return (letter.getX() <= -letter.getWidth());
     }
 
     @Override
