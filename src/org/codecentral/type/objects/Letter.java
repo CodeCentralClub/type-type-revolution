@@ -56,7 +56,6 @@ public class Letter extends GameObject {
         setX(getX() - speed);
     }
 
-
     /**
      * Sets the rate in pixels per update in which this letter moves to the left.
      */

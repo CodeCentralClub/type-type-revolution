@@ -28,6 +28,8 @@ public class TTRGame extends JApplet {
 
     private static final int ROW_AMOUNT = 4;
 
+    private BufferedImage image = null;
+
     private InputHandler inputHandler = new InputHandler();
 
     private List<Row> rows = new ArrayList<>();
@@ -64,7 +66,7 @@ public class TTRGame extends JApplet {
         drawRows(graphics);
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -78,14 +80,15 @@ public class TTRGame extends JApplet {
     }
 
     private void drawBackground(Graphics g) {
-        BufferedImage img = null;
-        try {
-            img = ImageIO.read(new File("assets/metalbackground.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Couldn't draw background");
+        if (image == null) {
+            try {
+                image = ImageIO.read(new File("assets/metalbackground.png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("Couldn't draw background");
+            }
         }
-        g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
     }
 
     private void initializeRows() {
