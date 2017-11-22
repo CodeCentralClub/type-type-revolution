@@ -28,6 +28,8 @@ public class TTRGame extends JApplet {
 
     private static final int ROW_AMOUNT = 4;
 
+    private InputHandler inputHandler = new InputHandler();
+
     private List<Row> rows = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -50,6 +52,8 @@ public class TTRGame extends JApplet {
 
     @Override
     public void init() {
+        addKeyListener(inputHandler);
+        setFocusable(true);
         initializeRows();
     }
 
@@ -59,6 +63,11 @@ public class TTRGame extends JApplet {
         drawBackground(graphics);
         drawRows(graphics);
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         repaint();
     }
 
