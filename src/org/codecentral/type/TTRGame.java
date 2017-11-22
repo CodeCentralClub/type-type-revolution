@@ -60,7 +60,7 @@ public class TTRGame extends JApplet {
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        //drawBackground(graphics);
+        drawBackground(graphics);
         drawRows(graphics);
 
         try {

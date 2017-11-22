@@ -38,9 +38,7 @@ public class Row extends GameObject {
 
     @Override
     public void onUpdate() {
-
-
-        if (letters.size() == 0) {
+        if (letters.isEmpty()) {
             for (int i = 0; i < 10; i++) {
                 letters.add(new Letter(200, 200, 100, 100));
             }
