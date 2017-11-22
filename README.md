@@ -12,10 +12,10 @@ side gutter.
 ### Manually
 Use the javac compiler to compile the sources:
 ```bash
-   javac -sourcepath src -d out/
+javac -sourcepath src -d out/
 ```
 
 To run, use the java CLI:
 ```bash
-   java out/org.codecentral.type.TTRGame
+java out/org.codecentral.type.TTRGame
 ```
